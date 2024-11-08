@@ -7,19 +7,31 @@
 
 
 import SwiftUI
+import Charts
 
-struct ContentView: View {
+struct SampleRating {
+    let place: String
+    let rating: Int
+    
+    static let ratings: [SampleRating] = [
+        SampleRating(place: "Bellagio", rating: 88 ),
+        SampleRating(place: "Paris", rating: 78),
+        SampleRating(place: "Treasure Island", rating: 94),
+        SampleRating(place: "Excalibur", rating: 99)
+    ]
+}
+
+struct VegasChart: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        Chart(SampleRating.ratings,id: \.place){
+            rating in
+            SectorMark(angle: .value("Ratings", rating.rating),innerRadius: .ratio(0.25),angularInset: 1).cornerRadius(7)
+                .foregroundStyle(by: .value("Place", rating.place))
+        }.padding()
+            .frame(height: 500)
     }
 }
 
 #Preview {
-    ContentView()
+    VegasChart()
 }

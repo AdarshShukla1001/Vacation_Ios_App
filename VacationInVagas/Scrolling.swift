@@ -2,7 +2,7 @@
 
 import SwiftUI
 
-struct Scrollling: View {
+struct Scrolling: View {
      
     var body: some View {
         ScrollView {
@@ -28,5 +28,5 @@ struct Scrollling: View {
 
 
 #Preview{
-    Scrollling()
+    Scrolling()
 }
